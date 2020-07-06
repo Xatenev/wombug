@@ -5,10 +5,8 @@
 
 #include "file.h"
 
-_Bool usage(int argc, char *argv[]);
-
 int main(int argc, char *argv[]) {
-    if (!usage(argc, argv)) {
+    if (argc != 2) {
         fprintf(stdout, "Please provide exactly one executable to start debugging.\nUsage: wombug executable.exe");
         return -1;
     }
@@ -22,9 +20,7 @@ int main(int argc, char *argv[]) {
         fprintf(stdout, "File `%s` is not a valid executable.\nUsage: wombug executable.exe", argv[1]);
         return -1;
     }
-    return 0;
-}
 
-_Bool usage(int argc, char *argv[]) {
-    return argc == 2;
+
+    return 0;
 }

@@ -3,22 +3,27 @@
 #include <stdbool.h>
 #include <windows.h>
 
+#include "common.h"
 #include "file.h"
 
+#include "help.h"
+#include "debug.h"
+#include "info.h"
+
 int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        fprintf(stdout, "Please provide exactly one executable to start debugging.\nUsage: wombug executable.exe");
-        return -1;
-    }
-
-    if (!check_file_exists(argv[1])) {
-        fprintf(stdout, "File `%s` does not exist.\nUsage: wombug executable.exe", argv[1]);
-        return -1;
-    }
-
-    if(!check_file_pe_elf(argv[1])) {
-        fprintf(stdout, "File `%s` is not a valid executable.\nUsage: wombug executable.exe", argv[1]);
-        return -1;
+    switch(common_parse_args(argc, argv)) {
+        case PROGRAM_STATE_HELP:
+            help_start();
+            break;
+        case PROGRAM_STATE_DEBUG:
+            debug_start(argv[2]);
+            break;
+        case PROGRAM_STATE_INFO:
+            info_start(argv[2]);
+            break;
+        case -1:
+            fprintf(stderr, "wombug: invalid arguments. See wombug -h for available commands.");
+            return -1;
     }
 
 

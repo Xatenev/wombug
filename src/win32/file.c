@@ -1,9 +1,10 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
 
 #include "file.h"
 
-_Bool check_file_pe_elf(const char *name) {
+_Bool file_is_executable(const char *name) {
     // Open file
     FILE *fp = fopen(name, "r");
 

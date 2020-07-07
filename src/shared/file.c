@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 #include <stdbool.h>
 
-_Bool check_file_exists(const char *name) {
+_Bool file_exists(const char *name) {
     // Create storage buffer
     struct stat buffer;
 

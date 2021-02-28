@@ -1,2 +1,3 @@
 # wombug
-An elf debugger written for educational purposes. The author also likes wombats.
+
+A placeholder repository for whenever I decide to write a debugger which will be called wombug.
